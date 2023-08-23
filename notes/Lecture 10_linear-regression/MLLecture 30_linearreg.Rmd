@@ -1,0 +1,323 @@
+---
+title: "Introduction to Supervised Learning <br>Part 1: Linear Regression"
+author: "Eren Bilen <br> Dickinson College"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(base_color = "#1c5253",colors = c(
+  red = "#f34213",
+  purple = "#3e2f5b",
+  orange = "#ff8811",
+  green = "#136f63",
+  white = "#FFFFFF"
+))
+
+```
+
+
+#Supervised versus Unsupervised Learning
+
+**supervised learning** means that for each predictor $x_i$, $i=1,\ldots,n$ there is an associated response variable $y_i$, 
+
+Our goal is to fit a model relating the response $(y)$ to the predictors $(x)$ such that we can accurately predict future responses (prediction) or such that we can better understand the relationship between the response and the predictor (inference). 
+
+Examples of this include linear regression, logistic regression, boosting, support vector machines, regression tree.
+
+---
+#Supervised versus Unsupervised Learning
+
+Unsupervised learning explores a different situation where for every observation $x_i$
+that we observe, we do not observe a response variable $y_i$. 
+
+Therefore, we cannot fit a model since we don't have a response variable! (All variales are $x_i$!)
+
+In this setting, we lack the supervision of a response $y_i$ to guide the $x_i$ for model fitting, so we develop other methods to guide our analysis.
+
+Typically we are **guided by the data**! 
+
+Recall: k-means clustering, hierarchical clustering, LDA. 
+
+The goal of clustering is to ascertain, on the basis of $x_1, \ldots, x_n$, where the observations fall into relatively distinct groups.
+
+---
+#Why Linear Regression
+
+- Linear Regression is a simple approach for supervised learning and predictive and quantitative response. 
+- It is one of the simplest methods to consider.
+- Extremely widely used in research: Econometrics!
+- Enables prediction + interpretation
+  - Unlike tree based models or neural-nets where interpretation is almost impossible.
+
+
+---
+#Recall the Advertising data set
+
+Consider Advertising data, where one is asked to suggest a marketing plan for next year that will result in high product sales.
+
+Questions that we might want to address:
+
+1. Is there a relationship between advertising budget and sales?
+  * How strong is the relationship between advertising budget and sales?
+2. Which media contribute to sales? (newspaper, TV, Superbowl..)
+  * How accurately can we estimate the effect of each medium on sales? 
+3. How accurately can we predict future sales, given all predictors?
+4. What is the type of relationship? (linear, non-linear?)
+
+Linear regression can answer each of these questions.
+
+---
+#Simple Linear Regression (SLR)
+
+- SLR is a way for predicting a response $Y$ on the basis of a single predictor variable $X.$
+ - $Y$ could be numeric, binary/categorical (coded as integers)
+- Easily expandable to Multiple Linear Regression where there exist multiple predictors $X_i$.
+
+We  model a linear relationship as 
+$$\begin{equation}
+  \hat{y} = \hat{\beta_o} + \hat{\beta_1} x,
+\tag{1}
+\end{equation}$$
+
+- We often say that we are regressing $Y$ onto $X.$
+
+In equation **(1)**, $\hat{\beta_o}$ and  $\hat{\beta_1}$ represent the slope and the intercept in the linear model. 
+
+Once we have used our **training data** to produce estimates $\hat{\beta_o}, \hat{\beta_1}$ for the model coefficients, we can predict future sales on the basis of a particular value of TV advertising by computing. More on this to come.
+
+---
+#Estimating the Coefficients
+
+We can use equation (1) to make predictions, but we need to "fit the model" and estimate the coefficients. 
+
+Start with exploring the Advertising data
+
+
+```{r,fig.height=3.75, fig.width=10}
+ad <- read.table("data/Advertising.csv", header=TRUE, sep=",")
+par(mfrow=c(1,3))
+plot(ad$TV, ad$Sales, xlab="TV", ylab="Sales",cex=2,cex.lab=1.25)
+plot(ad$Radio, ad$Sales, xlab="Radio", ylab="Sales",cex=2,cex.lab=1.25)
+plot(ad$Newspaper, ad$Sales, xlab="Newspaper", ylab="Sales",cex=2,cex.lab=1.25)
+```
+
+
+---
+#Estimating the Coefficients
+
+- Let $\hat{y}_i = \hat{\beta_o} + \hat{\beta_1} x_i$ be the prediction $Y$ based on the $i$the value of X.
+  - Goal: estimate the $\hat{\beta_o}$ (aka intercept) and $\hat{\beta_1}$ (aka slope) such that the resulting line goes through "right in the middle" of the data points.
+
+- Define $e_i = y_i - \hat{y}_i$ known as the $i$th **residual**, or the **error** where $y_i$ is the actual value of the response variable, $\hat{y_i}$ is the model's prediction. 
+
+- The **Sum of Squared Residiuals (SSR)** is defined as
+
+\begin{align}
+\text{RSS} &= e_1^2 + \ldots e_n^2 \\
+&= \sum_{i=1}^n (y_i - \hat{\beta}_o \hat{\beta}_1x_i)^2
+\end{align}
+
+- Using calculus, one can show that the minimizers are 
+
+\begin{align}
+\hat{\beta}_1 &= \frac{\sum_{i=1}^n(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})}, \; \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+
+---
+# $R^2$
+
+  $R^2$ is the **proportion of variance explained**—and it always takes on a value between 0 and 1, independent of the scale of Y.
+
+$$R^2 = \frac{TSS-SSR}{TSS} = 1 -\frac{SSR}{TSS},$$
+  where $TSS = \sum_i (y_i -\bar{y})$
+  is the **total sum of squares**.
+
+  - TSS measures the total variance in the response Y , and can be thought of as the amount of variability inherent in the response before the regression is performed.
+
+- SSR measures the amount of variability that is left unexplained after performing the regression.
+
+- $R^2$ measures the proportion of variability in Y that can be explained using X.
+
+  - An $R^2$ statistic that is close to 1 indicates that a large proportion of the variability in the response has been explained by the regression.
+  - A number near 0 indicates that the regression did not explain much of the variability in the response.
+  - This might occur because the linear model is wrong, or the inherent variability in response is high, or both.
+  - Additional benefit of regression: coefficients have meaning! (prediction vs. interpretation)
+
+---
+
+# R example
+
+Load the MASS and ISLR packages
+```{r,warning=FALSE}
+library(MASS)
+library(ISLR)
+data(Boston)
+```
+
+We investivate the `Boston` data set, which records `medv` (median house value) for 506 neighborhoods around Boston.
+
+**Goal**: predict `medv` using 13 predictors such as `rm` (average number of rooms per house), `age` (average age of houses), and `lstat` (percent of households with low socioeconomic status).
+
+---
+#Boston data set
+
+```{r}
+# check variable names
+names(Boston)
+# attach the Boston data set
+attach(Boston)
+```
+
+What types of exploratory data
+analysis can we do?
+- histogram
+- barplot
+- scatterplot
+- a map of Boston colored with a scale of average home price by neighborhood.
+
+---
+#Boston data set
+
+
+- How do we do linear regression?
+
+```{r}
+# run the linear regression
+lm.fit <- lm(medv~lstat ,data=Boston)
+# limited standard output
+lm.fit
+```
+
+- where `medv` is the Y-variable, `lstat` is the X variable.
+- interpretation: one unit change in X is associated with a 0.95 *decrease* in Y.
+- Does the interpretation make sense for `medv` and `lstat`?
+  - Always check the mean Y and X when you interpret coefficients to get a sense of their magnitude.
+---
+#Boston data set
+
+```{r}
+# detailed summary output
+summary(lm.fit)
+```
+
+---
+# Regression plot
+
+```{r,fig.width=5.5, fig.height=5.5}
+# scatterplot
+plot(lstat, medv)
+# add the regression line
+abline(lm.fit,lwd=2,col="red")
+```
+
+---
+# Now, let's really talk about prediction
+
+What does the model predict for the median home value in a neighborhood with `lstat`=10?
+
+In supervised learning, you want to split your data into traning and test groups. This is done to prevent *overfitting*. 
+
+
+```{r}
+# create a training sample
+trainingloc <- sample(1:nrow(Boston), 0.8*nrow(Boston))
+training <- Boston[trainingloc, ]
+# create a test sample
+testloc <- setdiff(1:nrow(Boston), trainingloc) # setdiff finds the rows not in trainingloc
+test <- Boston[testloc, ]
+
+# fit the model
+trained_model <- lm(medv~lstat ,data=training)
+
+# predict for a single value
+#trained_model$coefficients[1] + trained_model$coefficients[2] * 10
+
+# equivalently,
+#predict(trained_model, newdata = data.frame(lstat=c(10)))
+```
+
+---
+# Now, let's really talk about prediction
+```{r,fig.width=5,fig.height=5}
+# predict for all lstat in the test sample, compare with the actual Y
+preds <- trained_model$coefficients[1] + trained_model$coefficients[2] * test$lstat
+
+# plot predicted (red) and actual medv (blue)
+plot(test$lstat, preds,col=c('red'),ylab='medv', xlab='lstat',ylim=c(0,50),cex=1.25)
+par(new=TRUE)
+plot(test$lstat, test$medv,col=c('blue'),ann=FALSE, axes=FALSE,cex=1.25)
+```
+
+---
+# How good is the model?: Mean Squared Error (MSE)
+```{r}
+errorsq <- (test$medv - preds)^2
+mse <- sum(errorsq)/nrow(test)
+mse
+```
+
+---
+# Can we improve on the model? Add another variable
+```{r}
+# fit the model with the average number of rooms per house included as an additional predictor
+trained_model <- lm(medv ~ lstat + rm ,data=training)
+
+# predict for all lstat in the test sample, compare with the actual Y
+preds <- trained_model$coefficients[1] + trained_model$coefficients[2] * test$lstat +
+  trained_model$coefficients[3] * test$rm
+
+# Get MSE
+errorsq <- (test$medv - preds)^2
+mse <- sum(errorsq)/nrow(test)
+mse
+```
+
+
+---
+# Works with binary outcome too!: LPM
+```{r,fig.width=4,fig.height=4}
+# fit the model with the average number of rooms per house included as an additional predictor
+trained_model <- lm(chas ~ rm ,data=training)
+
+# predict for all lstat in the test sample, compare with the actual Y
+preds <- trained_model$coefficients[1] + trained_model$coefficients[2] * test$rm
+
+# plot predicted (red) and actual medv (blue)
+plot(test$rm, preds,col=c('red'),ylab='chas', xlab='rm',cex=1.25)
+par(new=TRUE)
+plot(test$rm, test$chas,col=c('blue'),ann=FALSE, axes=FALSE,cex=1.25)
+```
+
+---
+# Works with binary outcome too!: LPM
+```{r}
+summary(trained_model)
+```
+
+---
+# Works with binary outcome too!: LPM
+```{r,warning=FALSE,message=FALSE}
+library(dplyr)
+test <- test %>% mutate(make_pred=(preds>mean(chas))*1)
+
+# Get "confusion matrix"
+oneone <- test %>% filter(chas==1, make_pred==1) %>% count()
+onezero <- test %>% filter(chas==1, make_pred==0) %>% count()
+zeroone <- test %>% filter(chas==0, make_pred==1) %>% count()
+zerozero <- test %>% filter(chas==0, make_pred==0) %>% count()
+
+percent_correct <- (oneone + zerozero)/nrow(test)
+percent_correct
+```
+
+
+
