@@ -1,6 +1,6 @@
 ---
 title: "HW 6"
-subtitle: "Data 180, Professor Bilen"
+subtitle: "Data 180, Professor Kennedy"
 author: 
   name: "Your Name"
   email: "XXXX@dickinson.edu"
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
 
-**Due date:** November 10 beginning of class.
+**Due date:** November 9 beginning of class.
 
 
 The file `Milk_Composition.csv` is available in the same hw folder as this .Rmd file on Github (Real Data!). The file contains the composition of milk for a set of mammals. The variables measured are the compositions (as a percentage) of five milk constituents: Water, Protein, Fat, Lactose, and Ash. (Ash is a term used to describe inorganic residue from the incineration of organic matter and is mostly minerals).

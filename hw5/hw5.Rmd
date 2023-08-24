@@ -1,6 +1,6 @@
 ---
 title: "HW 5"
-subtitle: "Data 180, Professor Bilen"
+subtitle: "Data 180, Professor Kennedy"
 author: 
   name: "Your Name"
   email: "XXXX@dickinson.edu"
@@ -9,7 +9,7 @@ output:
   html_document
 ---
 
-**Due date:** November 3 beginning of class.
+**Due date:** November 2 beginning of class.
 
 # Question 1
 Let a 5 x 4 data matrix X be defined as below. Find the following, and show your work/calculations. Note: You don't need to use any functions/packages on this question-- you should compute by hand.

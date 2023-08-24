@@ -1,6 +1,6 @@
 ---
 title: "HW 4: Dplyr"
-subtitle: "Data 180, Professor Bilen"
+subtitle: "Data 180, Professor Kennedy"
 author: 
   name: "Your Name"
   email: "XXXX@dickinson.edu"
@@ -9,7 +9,7 @@ output:
   html_document
 ---
 
-**Due date:** October 25 beginning of class.
+**Due date:** October 26 beginning of class.
 
 Let's get some practice with **dplyr**! For this assignment, you will work with Mario Kart data! This data is made available as part of Tidy Tuesday. A codebook is available at https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-05-25.
 

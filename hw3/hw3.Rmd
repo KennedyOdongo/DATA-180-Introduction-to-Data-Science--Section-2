@@ -1,6 +1,6 @@
 ---
 title: "HW 3: Visualization, Ggplot2 & Maps"
-subtitle: "Data 180, Professor Bilen"
+subtitle: "Data 180, Professor Kennedy"
 author: 
   name: "XXXX"
   email: "XXXX@dickinson.edu"
@@ -11,7 +11,7 @@ output:
 
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
 
-**Due date:** October 11 beginning of class.
+**Due date:** October 12 beginning of class.
 
 **Reminder:** You can insert R code in your Rmd file as a chunk in the following way:
 ```{r}

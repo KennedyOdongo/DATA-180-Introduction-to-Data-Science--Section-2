@@ -1,6 +1,6 @@
 ---
 title: "HW 1"
-subtitle: "Data 180, Professor Bilen"
+subtitle: "Data 180, Professor Kennedy"
 author: 
   name: "Your Name"
   email: "XXXX@dickinson.edu"
@@ -10,7 +10,7 @@ output:
 ---
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
 
-**Due date:** September 20 beginning of class.
+**Due date:** September 21 beginning of class.
 
 **Reminder:** You can insert R code in your Rmd file as a chunk in the following way:
 ```{r}
