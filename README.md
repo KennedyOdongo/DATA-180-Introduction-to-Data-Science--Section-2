@@ -5,7 +5,7 @@ Course page for Data 180-02, Fall 2023 at Dickinson College.
 
 
 
-First Header  | Second Header
+              |
 ------------- | -------------
 Content Cell  | Content Cell
 Content Cell  | Content Cell
