@@ -6,5 +6,6 @@ Course page for Data 180-02, Fall 2023 at Dickinson College.
 | ------------- | ------------- |
 | Email | odongok@dickinson.edu|
 |Office | Althouse 219  |
-| Content Cell  | Content Cell  |
+| Office Hours | Mon 10:00 am -12:00 pm, Wed. 3:00 pm-4:00 pm 
+Thur.  10:00 am-11:00 am|
 
