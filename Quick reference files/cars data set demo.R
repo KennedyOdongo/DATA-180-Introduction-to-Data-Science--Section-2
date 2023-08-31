@@ -31,7 +31,6 @@ round(table(Cars93$AirBags)/nrow(Cars93),3)
 barplot(table(Cars93$AirBags),ylab="Frequency",cex.lab=1.3,col=c(1,3,4))
 
 
-
 #colors
 colors()[1:5]
 
