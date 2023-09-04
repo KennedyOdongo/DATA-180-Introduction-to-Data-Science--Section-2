@@ -1,7 +1,8 @@
 # Packages/ Libraries in R Programming language are a set of R functions, compiled code, and sample data.
 
 library("MASS")
-
+help(Cars93)
+??Cars93
 # Show first 6 rows of the cars dataset
 head(Cars93)
 
@@ -10,6 +11,8 @@ ls(Cars93)
 
 # Get one column of the data
 Cars93$Manufacturer
+
+Cars93$Type
 
 #We can use the table function to find the 
 #frequency distribution for the standard airbag option
@@ -30,11 +33,11 @@ table(Cars93$AirBags)/nrow(Cars93)
 round(table(Cars93$AirBags)/nrow(Cars93),3)
 
 # Bar graphs
-barplot(table(Cars93$AirBags),ylab="Frequency",cex.lab=1.3,col=c(1,3,4))
+barplot(table(Cars93$AirBags),ylab="Frequency",cex.lab=1.3,col=c(200,3,4))
 
 
 #colors
-colors()[1:5]
+colors()[1:40]
 
 # Palette
 palette()
