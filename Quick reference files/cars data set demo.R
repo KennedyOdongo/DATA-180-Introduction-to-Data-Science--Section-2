@@ -1,7 +1,7 @@
 # Packages/ Libraries in R Programming language are a set of R functions, compiled code, and sample data.
 
 library("MASS")
-help(Cars93)
+
 ??Cars93
 # Show first 6 rows of the cars dataset
 head(Cars93)
@@ -45,5 +45,9 @@ palette()
 # Pie Chart
 pie(table(Cars93$AirBags),main="Standard Air Bags",col=c(2,3,4),cex=1.3)
 
+ls(Cars93)
 
+stem(Cars93$Weight)
 
+hist(Cars93$Weight, breaks = seq(1400,4800,500), col="brown", xlab = "car weights", cex.lab=1.2,cex.axis=1.3 )
+box()
