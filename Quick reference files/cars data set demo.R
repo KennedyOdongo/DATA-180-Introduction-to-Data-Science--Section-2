@@ -51,3 +51,11 @@ stem(Cars93$Weight)
 
 hist(Cars93$Weight, breaks = seq(1400,4800,500), col="brown", xlab = "car weights", cex.lab=1.2,cex.axis=1.3 )
 box()
+
+stripchart(Cars93$MPG.city, method = "stack", pch=16,cex.axis = 1.2, cex.lab = 1.2, xlab = "Miles per Gallon")
+
+
+
+mean(Cars93$MPG.city)
+median(Cars93$MPG.city)
+table(Cars93$MPG.city)
