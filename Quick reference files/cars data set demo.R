@@ -59,3 +59,17 @@ stripchart(Cars93$MPG.city, method = "stack", pch=16,cex.axis = 1.2, cex.lab = 1
 mean(Cars93$MPG.city)
 median(Cars93$MPG.city)
 table(Cars93$MPG.city)
+
+plot(MPG.highway~Horsepower,data=Cars93,pch=16,cex.lab=1.2,cex.axis=1.2)
+plot(MPG.highway~MPG.city,data=Cars93,pch=16,cex.lab=1.2,cex.axis=1.2)
+
+plot(MPG.highway~MPG.city,data=Cars93,pch=16,cex.lab=1.2,cex.axis=1.2, ylim=c(10,50),xlim=c(10,50))
+
+stripchart(Cars93$MPG.city,add=T,method="stack",at=10,col="blue",pch=16)
+stripchart(Cars93$MPG.highway,add=T,vertical=T,method="stack",at=10,col="blue",pch=16)
+
+
+matrix(c(1,2,3,4),nrow=2,byrow=T)
+
+layout(matrix(c(2,0,1,3),nrow=2,byrow=T),widths=c(2,1),heights=c(1,2))
+layout.show(n=3)
