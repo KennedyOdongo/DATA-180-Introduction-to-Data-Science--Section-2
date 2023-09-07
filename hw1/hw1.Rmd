@@ -37,7 +37,7 @@ a) Store the data below in a data frame object named `my_df`.
 | Gisele | Twitter |
 | Harry | Instagram |
 
-b) What are the dimensions of `my_df`?
+b) What are the dimensionss of `my_df`?
 
 c) Write R code that counts the total number of users.
 
