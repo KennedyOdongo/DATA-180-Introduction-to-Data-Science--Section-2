@@ -1,12 +1,13 @@
 ---
 title: "HW 1"
-subtitle: "Data 180, Professor Kennedy"
-author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
-output: 
-  html_document
+author:
+  name: Kennedy Odongo
+  email: XXXX@dickinson.edu
+date: "`r format(Sys.Date(), "%B %d, %Y")`"
+output:
+  pdf_document: default
+  html_document: default
+subtitle: Data 180, Professor Kennedy
 ---
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
 
