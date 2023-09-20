@@ -2,8 +2,8 @@
 title: "HW 1"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Denys Sharpylo"
+  email: "sharpyld@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -26,6 +26,13 @@ Go to [datacamp.com](https://datacamp.com) and complete the tutorial "Introducti
 a) Store the data below in a data frame object named `my_df`.
 
 
+```{r}
+person <- c("Alice", "Bob","Charlie", "Denise", "Erin", "Frank", "Gisele","Harry")
+preference <- c("Twitter", "Facebook","Twitter", "Instagram", "Facebook", "Twitter", "Twitter", "Instagram")
+my_df <- data.frame(person, preference)
+my_df
+```
+
 |Person | Preference|
 |:------|:----------|
 |Alice | Twitter |
@@ -39,24 +46,82 @@ a) Store the data below in a data frame object named `my_df`.
 
 b) What are the dimensions of `my_df`?
 
+```{r}
+dim(my_df)
+```
+
 c) Write R code that counts the total number of users.
+
+```{r}
+# add code
+```
 
 d) Write R code that counts the total number of users who prefer Twitter.
 
+```{r}
+sum(my_df$preference== "Twitter")
+```
+
 e) Write R code that returns what Gisele prefers.
+
+```{r}
+# add code
+```
 
 ## Task 2
 a) Create a vector named `my_vec` that includes all integers from 1 to 10 (inclusive).
 
+```{r}
+my_vec <- 1:10
+my_vec
+```
+
 b) Replace the second element in `my_vec` with the number `99`.
 
+```{r}
+my_vec[2] = 99
+my_vec
+```
+
 c) Write a function called `my_func` that prints `This element is greater than 5!` if an element in `myvec` is greater than 5, and `This element is NOT greater than 5!` otherwise.
+
+```{r}
+my_func <- function(x){
+  if (x>5){
+    print("This element is greater than 5!")
+  }
+  else{
+    print("Tihs element is NOT greater than 5")
+  }
+}
+my_func(8)
+my_func(3)
+```
 
 ## Task 3
 a. Write a function named `get_fibonacci` that returns the n'th value in the [fibonacci sequence](https://www.mathsisfun.com/numbers/fibonacci-sequence.html). For example, `get_fibonacci(5)` should return 3; `get_fibonacci(7)` should return 8 and so on. ***Hint:** It is possible to call the same function from inside it. E.g., you can call `get_fibonacci()` from inside `get_fibonacci()`. Like inception!*
 
+```{r}
+get_fibonacci <- function(n){
+  if (n==1){
+    n <-0
+  }
+  else if (n==2){
+    n <-1
+  }
+  else{
+   n <- get_fibonacci(n-1)+ get_fibonacci(n-2)
+  }
+}
+
+```
+
 b. Using your function in part (a), find and return the 19th value in the fibonacci sequence.
 
+```{r}
+print(get_fibonacci(19))
+
+```
 
 <br>
 You are done! 🏁 Don't forget to `commit` and `push` your .Rmd file to your Github clone repository before the due date.
