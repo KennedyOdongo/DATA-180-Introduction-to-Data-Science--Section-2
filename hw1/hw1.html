@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-09-14" />
+<meta name="date" content="2023-09-20" />
 
 <title>HW 1</title>
 
@@ -354,7 +354,7 @@ display: none;
 <h4 class="author">Denys Sharpylo</h4>
 <a class="author_email" href="mailto:#"><a href="mailto:sharpyld@dickinson.edu" class="email">sharpyld@dickinson.edu</a></a>
 </address>
-<h4 class="date">September 14, 2023</h4>
+<h4 class="date">September 20, 2023</h4>
 
 </div>
 
@@ -441,7 +441,8 @@ my_df</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Write R code that counts the total number of users.</li>
 </ol>
-<pre class="r"><code># add code</code></pre>
+<pre class="r"><code>sum(table(my_df$person))</code></pre>
+<pre><code>## [1] 8</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Write R code that counts the total number of users who prefer
 Twitter.</li>
@@ -451,7 +452,8 @@ Twitter.</li>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Write R code that returns what Gisele prefers.</li>
 </ol>
-<pre class="r"><code># add code</code></pre>
+<pre class="r"><code>print(my_df$preference[7])</code></pre>
+<pre><code>## [1] &quot;Twitter&quot;</code></pre>
 </div>
 <div id="task-2" class="section level2">
 <h2>Task 2</h2>
@@ -480,13 +482,13 @@ my_vec</code></pre>
     print(&quot;This element is greater than 5!&quot;)
   }
   else{
-    print(&quot;Tihs element is NOT greater than 5&quot;)
+    print(&quot;This element is NOT greater than 5&quot;)
   }
 }
 my_func(8)</code></pre>
 <pre><code>## [1] &quot;This element is greater than 5!&quot;</code></pre>
 <pre class="r"><code>my_func(3)</code></pre>
-<pre><code>## [1] &quot;Tihs element is NOT greater than 5&quot;</code></pre>
+<pre><code>## [1] &quot;This element is NOT greater than 5&quot;</code></pre>
 </div>
 <div id="task-3" class="section level2">
 <h2>Task 3</h2>
@@ -509,7 +511,10 @@ inside it. E.g., you can call <code>get_fibonacci()</code> from inside
   else{
    n &lt;- get_fibonacci(n-1)+ get_fibonacci(n-2)
   }
-}</code></pre>
+}
+
+print(get_fibonacci(5))</code></pre>
+<pre><code>## [1] 3</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Using your function in part (a), find and return the 19th value in
 the fibonacci sequence.</li>
