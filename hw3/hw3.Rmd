@@ -2,8 +2,8 @@
 title: "HW 3: Visualization, Ggplot2 & Maps"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "XXXX"
-  email: "XXXX@dickinson.edu"
+  name: "Denys Sharpylo"
+  email: "sharpyld@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`' # no need to change date since this line grabs today's date
 output: 
   html_document
@@ -40,7 +40,7 @@ Create a simple scatterplot using ggplot2 where x axis shows `EngineSize`, y axi
 
  
 ```{r}
-
+ggplot(Cars93, aes(x=EngineSize,y= MPG.city))+ geom_point(col= "blue", size= 2) + xlim(NA, 6) + ylim(NA, 55) + labs(title = "Engine Size to MPG in the city", subtitle = "Scatterplot", caption = "Engine Size") + ylab("Miles Per Gallon")
 ```
 
 ## Task 2
@@ -48,7 +48,8 @@ Recreate the scatterplot in Task 1. Add the following functionality:
 
 * Use a different color for each car `Type`.
 ```{r}
-
+## TO REVISE
+ggplot(Cars93, aes(x=EngineSize,y= MPG.city, color= Type))+ geom_point( size= 2) + xlim(NA, 6) + ylim(NA, 55) + labs(title = "Engine Size to MPG in the city", subtitle = "Scatterplot", caption = "Engine Size") + ylab("Miles Per Gallon") + xlab("Engine Size")
 ```
 
 ## Task 3
@@ -58,7 +59,7 @@ Recreate the scatterplot in Task 2. Add the following functionality:
 * Make the curve line red, and dashed. (Hint linetype is the option you can use to set line style as 'dashed')
 
 ```{r}
-
+ggplot(Cars93, aes(x=EngineSize,y= MPG.city, color= Type))+ geom_point( size= 2) + xlim(NA, 6) + ylim(NA, 55) + labs(title = "Engine Size to MPG in the city", subtitle = "Scatterplot", caption = "Engine Size") + ylab("Miles Per Gallon") + xlab("Engine Size") + geom_smooth(col= "red", linetype= "dashed")
 ```
 
 ## Task 4
@@ -69,7 +70,7 @@ Create a barplot showing count of cars by `AirBags` using ggplot2.
 * Add a title, subtitle, x axis label, y axis label, and a caption using title, subtitle, caption options inside `+ labs()`.
 
 ```{r}
-
+ggplot(Cars93, aes(x= AirBags, color= AirBags))+ geom_bar() + labs(title = "Barplot of Airbags", subtitle = "Barplot", caption = "Airbags") + ylab("Count") + xlab("Type of AirBags")
 ```
 
 ## Task 5
@@ -80,7 +81,7 @@ Recreate the barplot in Task 4 for different car `Origin`, such that you create 
 * in `geom_bar(), use `position='dodge'` to have the barplots side by side.
 
 ```{r}
-
+ggplot(Cars93, aes(x= Origin, fill= AirBags))+ geom_bar(position = "dodge") + labs(title = "Barplot of Airbags and Car Origin", subtitle = "Barplot", caption = "Car Origin Type") + ylab("Count") + xlab("Car Origin and AirBag configuration")
 ```
 
 # Maps
@@ -101,12 +102,13 @@ Notice that `NAME` includes the name of a state, `geometry` includes spatial coo
 ## Task 1
 Create a map of Australia using `ggplot2`.
 ```{r}
-
+ggplot()+ geom_sf(data= au_states$geometry, color= "white", fill= "green")+ labs(title = "Australian map")
 ```
 
 ## Task 2
 Modify your map such that each state is displayed with a different color. (Hint: use the fill option as an aes setting with variable `NAME`.)
 ```{r}
+ggplot()+ geom_sf(data= au_states$geometry, color= "white", aes(fill= au_states$NAME))+ labs(title = "Australian map")
 
 ```
 ## Task 3
@@ -131,6 +133,7 @@ Display the capitals as points on your map from Task 1. (Hint: combine `geom_sf(
 * Use `size=2` to make points larger.
 
 ```{r}
+ggplot() + geom_sf(data= au_states$geometry, color= "white", fill= "green")+ geom_point(data = au_capitals, aes(lon, lat), col="red", size=2) + labs(title = "Australian map")
 
 ```
 
@@ -138,6 +141,7 @@ Display the capitals as points on your map from Task 1. (Hint: combine `geom_sf(
 ## Task 4
 Let's take a look at a different projection output. Change your map's projection to epsg 3112 by adding `+ coord_sf()`. Recall the option that goes inside `coord_sf()` is `st_crs(4_digit_code)`
 ```{r}
+ggplot() + geom_sf(data= au_states$geometry, color= "white", fill= "green")+ labs(title = "Australian map") + coord_sf(crs= st_crs(3112))
 
 ```
 
@@ -151,7 +155,7 @@ library(mapview)
 Create an interactive map of Australia using `mapview()`
 
 ```{r}
-
+mapview(au_states)
 ```
 
 ## Task 6
@@ -165,7 +169,7 @@ Now add the new spatial capitals object via + (that is, you can use the followin
 * You can use the option `col.regions='red'` to make capitals appear in color red, and `legend=F` in second `mapview()` to remove the uninformative second set of legend. 
 
 ```{r}
-
+mapview(au_states) + mapview(capitals_geo, col.regions= "red", legend=F)
 ```
 
 
