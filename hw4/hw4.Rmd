@@ -69,7 +69,7 @@ Let's get the year from the `date` column and save it as a variable named `year`
 
 ```{r}
 yr <- select(mutate(records,year= substr(date,1, 4)), year)
-yr
+head(yr)
 ```
 
 # Question 6
